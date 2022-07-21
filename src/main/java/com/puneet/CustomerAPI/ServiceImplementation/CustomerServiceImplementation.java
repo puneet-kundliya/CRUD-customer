@@ -5,12 +5,16 @@ import com.puneet.CustomerAPI.Repository.CustomerRepository;
 import com.puneet.CustomerAPI.ServiceInterface.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Service
 public class CustomerServiceImplementation implements CustomerService {
 
     @Autowired
     CustomerRepository customerRepository;
+
     @Override
     public void saveCustomer(Customer customer) {
         customerRepository.save(customer);
@@ -34,6 +38,12 @@ public class CustomerServiceImplementation implements CustomerService {
         }
         customerRepository.save(oldCustomer);
     }
+
+    @Override
+    public List<Customer> getAllCustomer() {
+        return customerRepository.findAll();
+    }
+
     @Override
     public void deleteCustomer(Integer id) {
         customerRepository.deleteById(id);

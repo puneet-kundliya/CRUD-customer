@@ -4,6 +4,7 @@ import com.puneet.CustomerAPI.Entity.Customer;
 import com.puneet.CustomerAPI.ServiceInterface.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -11,6 +12,11 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
+
+    @RequestMapping(method = RequestMethod.GET, path = "/")
+    public List<Customer> getAllCustomer(){
+        return customerService.getAllCustomer();
+    }
 
     @RequestMapping(method = RequestMethod.POST, path = "/save")
     public String saveCustomer(@RequestBody Customer customer){
